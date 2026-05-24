@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clean Label Meals — El Paso, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E8;
+  --dark: #1A1A14;
+  --green: #2D4A2D;
+  --green-light: #4A7C4A;
+  --green-pale: #E8F0E8;
+  --gold: #C8A94A;
+  --white: #FDFCF8;
+  --red: #C0392B;
+  --mono: 'DM Mono', monospace;
+  --serif: 'DM Serif Display', serif;
+  --sans: 'Instrument Sans', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--dark); color:var(--cream); font-family:var(--sans); min-height:100vh; }
+
+/* NAV TABS */
+.nav { display:flex; overflow-x:auto; background:#111; border-bottom:1px solid rgba(200,169,74,0.2); position:sticky; top:0; z-index:100; scrollbar-width:none; }
+.nav::-webkit-scrollbar { display:none; }
+.nav-btn { flex-shrink:0; padding:14px 18px; font-family:var(--mono); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(245,240,232,0.5); background:none; border:none; cursor:pointer; transition:all .2s; border-bottom:2px solid transparent; white-space:nowrap; }
+.nav-btn.active { color:var(--gold); border-bottom-color:var(--gold); }
+.nav-btn:hover { color:var(--cream); }
+
+/* PAGES */
+.page { display:none; padding:32px 20px; max-width:680px; margin:0 auto; }
+.page.active { display:block; }
+
+/* HERO */
+.hero { text-align:center; padding:40px 20px 32px; }
+.hero-logo { width:80px; height:80px; background:var(--green); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:36px; margin:0 auto 16px; border:3px solid var(--gold); }
+.hero h1 { font-family:var(--serif); font-size:36px; color:var(--cream); line-height:1.1; }
+.hero h1 em { color:var(--gold); font-style:italic; }
+.hero-sub { font-size:13px; color:rgba(245,240,232,0.6); margin-top:8px; font-family:var(--mono); letter-spacing:1px; }
+.hero-location { font-size:12px; color:var(--gold); margin-top:6px; font-family:var(--mono); }
+
+/* LINK BUTTONS */
+.links { display:flex; flex-direction:column; gap:12px; margin-top:28px; }
+.link-btn { display:flex; align-items:center; gap:14px; padding:16px 20px; border-radius:10px; text-decoration:none; font-size:14px; font-weight:600; transition:all .2s; border:1px solid rgba(255,255,255,0.08); }
+.link-btn:hover { transform:translateY(-2px); }
+.link-btn .lb-icon { font-size:22px; width:32px; text-align:center; }
+.link-btn .lb-text { flex:1; }
+.link-btn .lb-label { font-size:11px; font-family:var(--mono); letter-spacing:1px; opacity:0.7; }
+.lb-ig { background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color:#fff; }
+.lb-tk { background:#010101; color:#fff; border:1px solid #333; }
+.lb-fb { background:#1877f2; color:#fff; }
+.lb-sc { background:#FFFC00; color:#000; }
+.lb-order { background:var(--green); color:var(--cream); border:1px solid var(--gold); }
+.lb-phone { background:rgba(200,169,74,0.15); color:var(--gold); border:1px solid rgba(200,169,74,0.3); }
+
+/* SECTION HEADERS */
+.sec-label { font-family:var(--mono); font-size:10px; letter-spacing:3px; color:var(--gold); margin-bottom:6px; }
+.sec-title { font-family:var(--serif); font-size:30px; margin-bottom:20px; }
+
+/* PAYMENT CARDS */
+.pay-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.pay-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px 16px; text-align:center; }
+.pay-card .p-icon { font-size:32px; margin-bottom:8px; }
+.pay-card .p-name { font-family:var(--mono); font-size:12px; letter-spacing:1px; color:var(--gold); margin-bottom:4px; }
+.pay-card .p-handle { font-size:13px; color:rgba(245,240,232,0.8); }
+.pay-card.cash { grid-column:span 2; background:rgba(45,74,45,0.3); border-color:rgba(200,169,74,0.3); }
+.pay-note { margin-top:16px; background:rgba(200,169,74,0.1); border:1px solid rgba(200,169,74,0.2); border-radius:10px; padding:16px; font-size:13px; color:rgba(245,240,232,0.75); line-height:1.7; text-align:center; }
+
+/* HIGHLIGHT CARDS */
+.hl-grid { display:grid; gap:12px; }
+.hl-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px; cursor:pointer; transition:all .2s; }
+.hl-card:hover { background:rgba(255,255,255,0.07); border-color:rgba(200,169,74,0.3); }
+.hl-card-top { display:flex; align-items:center; gap:14px; }
+.hl-icon { font-size:30px; width:48px; text-align:center; }
+.hl-info h3 { font-family:var(--serif); font-size:18px; margin-bottom:2px; }
+.hl-info p { font-size:12px; color:rgba(245,240,232,0.55); font-family:var(--mono); }
+.hl-arrow { margin-left:auto; color:var(--gold); font-size:18px; transition:transform .2s; }
+.hl-card.open .hl-arrow { transform:rotate(90deg); }
+.hl-body { display:none; margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); }
+.hl-card.open .hl-body { display:block; }
+.hl-body p { font-size:13px; color:rgba(245,240,232,0.75); line-height:1.8; }
+.hl-body ul { margin-top:8px; padding-left:0; list-style:none; }
+.hl-body ul li { font-size:13px; color:rgba(245,240,232,0.75); padding:3px 0; }
+.hl-body ul li::before { content:"✓ "; color:var(--gold); }
+
+/* DIET SECTION */
+.diet-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+.diet-tab { padding:8px 16px; border-radius:20px; font-family:var(--mono); font-size:11px; letter-spacing:1px; cursor:pointer; border:1px solid rgba(255,255,255,0.15); color:rgba(245,240,232,0.6); background:none; transition:all .2s; }
+.diet-tab.active { background:var(--green); color:var(--cream); border-color:var(--green); }
+.diet-panel { display:none; }
+.diet-panel.active { display:block; }
+.diet-header { background:rgba(45,74,45,0.3); border:1px solid rgba(74,124,74,0.3); border-radius:12px; padding:20px; margin-bottom:16px; }
+.diet-header h3 { font-family:var(--serif); font-size:24px; margin-bottom:4px; }
+.diet-header p { font-size:13px; color:rgba(245,240,232,0.65); line-height:1.6; }
+.food-cat { margin-bottom:20px; }
+.food-cat-title { font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:10px; }
+.food-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.food-tag { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:6px 12px; font-size:12px; color:rgba(245,240,232,0.85); }
+.food-tag.avoid { background:rgba(192,57,43,0.1); border-color:rgba(192,57,43,0.3); color:#e07070; }
+
+/* OIL CARDS */
+.oil-grid { display:grid; gap:12px; }
+.oil-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px; }
+.oil-card.good { border-left:3px solid var(--green-light); }
+.oil-card.bad { border-left:3px solid var(--red); }
+.oil-top { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.oil-icon { font-size:28px; }
+.oil-name { font-family:var(--serif); font-size:20px; }
+.oil-verdict { font-family:var(--mono); font-size:10px; letter-spacing:1px; padding:3px 10px; border-radius:10px; }
+.oil-verdict.yes { background:rgba(74,124,74,0.3); color:#8bc98b; }
+.oil-verdict.no { background:rgba(192,57,43,0.2); color:#e07070; }
+.oil-desc { font-size:13px; color:rgba(245,240,232,0.7); line-height:1.7; }
+.oil-why { margin-top:10px; font-family:var(--mono); font-size:11px; color:rgba(245,240,232,0.5); }
+
+/* REVIEWS */
+.review-grid { display:grid; gap:14px; }
+.review-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px; }
+.review-stars { color:var(--gold); font-size:16px; margin-bottom:8px; letter-spacing:2px; }
+.review-text { font-size:14px; color:rgba(245,240,232,0.85); line-height:1.7; font-style:italic; margin-bottom:12px; }
+.review-author { font-family:var(--mono); font-size:11px; color:var(--gold); letter-spacing:1px; }
+.review-diet { font-family:var(--mono); font-size:10px; color:rgba(245,240,232,0.4); margin-top:3px; }
+.review-cta { margin-top:24px; background:rgba(45,74,45,0.3); border:1px solid rgba(74,124,74,0.3); border-radius:12px; padding:20px; text-align:center; }
+.review-cta p { font-size:13px; color:rgba(245,240,232,0.7); margin-bottom:12px; }
+.review-cta a { color:var(--gold); font-family:var(--mono); font-size:12px; letter-spacing:1px; }
+
+/* COOKWARE */
+.cw-grid { display:grid; gap:12px; }
+.cw-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px; }
+.cw-card.featured { border-color:var(--gold); }
+.cw-top { display:flex; justify-content:space-between; align-items:start; margin-bottom:8px; }
+.cw-name { font-family:var(--serif); font-size:20px; }
+.cw-badge { font-family:var(--mono); font-size:9px; letter-spacing:1px; padding:4px 10px; background:var(--gold); color:var(--dark); border-radius:3px; }
+.cw-desc { font-size:13px; color:rgba(245,240,232,0.7); line-height:1.7; }
+.cw-spec { font-family:var(--mono); font-size:11px; color:var(--green-light); margin-top:8px; }
+
+/* CONTACT */
+.contact-block { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px; margin-bottom:14px; text-align:center; }
+.contact-block .c-icon { font-size:36px; margin-bottom:10px; }
+.contact-block .c-label { font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:6px; }
+.contact-block .c-value { font-size:16px; font-weight:600; }
+.contact-block .c-sub { font-size:12px; color:rgba(245,240,232,0.5); margin-top:4px; }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+/* SOURCE */
+.src-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px; margin-bottom:12px; }
+.src-label { font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:6px; }
+.src-name { font-family:var(--serif); font-size:22px; margin-bottom:8px; }
+.src-desc { font-size:13px; color:rgba(245,240,232,0.7); line-height:1.7; }
+.src-checks { margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; }
+.src-check { font-family:var(--mono); font-size:11px; color:#8bc98b; }
+
+/* PRICING */
+.price-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:14px; }
+.price-row:last-child { border-bottom:none; }
+.price-row .pitem { color:rgba(245,240,232,0.75); }
+.price-row .pcost { font-family:var(--mono); color:var(--cream); }
+.price-row.ptotal { border-top:1px solid rgba(200,169,74,0.3); margin-top:4px; }
+.price-row.ptotal .pitem { font-weight:700; color:var(--cream); }
+.price-row.ptotal .pcost { color:var(--gold); font-size:16px; }
+.price-row.pcharge .pcost { color:#8bc98b; font-size:16px; font-weight:700; }
+
+/* FOOTER */
+.footer { text-align:center; padding:40px 20px; font-family:var(--mono); font-size:10px; letter-spacing:2px; color:rgba(245,240,232,0.3); border-top:1px solid rgba(255,255,255,0.06); margin-top:20px; }
+.footer span { color:var(--gold); }
+
+/* UTIL */
+.chip { display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:1px; padding:4px 10px; border-radius:3px; margin-bottom:16px; }
+.chip.green { background:rgba(74,124,74,0.3); color:#8bc98b; }
+.divider { height:1px; background:rgba(255,255,255,0.06); margin:28px 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+  <button class="nav-btn" onclick="showPage('order')">📦 Order</button>
+  <button class="nav-btn" onclick="showPage('diets')">🥗 Diets</button>
+  <button class="nav-btn" onclick="showPage('highlights')">📋 Why Us</button>
+  <button class="nav-btn" onclick="showPage('oils')">🫒 Oils</button>
+  <button class="nav-btn" onclick="showPage('cookware')">🍳 Cookware</button>
+  <button class="nav-btn" onclick="showPage('sourcing')">🔍 Sourcing</button>
+  <button class="nav-btn" onclick="showPage('payment')">💳 Payment</button>
+  <button class="nav-btn" onclick="showPage('reviews')">⭐ Reviews</button>
+  <button class="nav-btn" onclick="showPage('contact')">📍 Contact</button>
+</div>
+
+<!-- ============ HOME ============ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-logo">🥩</div>
+    <h1>Clean Label<br><em>Meals</em></h1>
+    <div class="hero-sub">El Paso's Most Transparent Meal Prep</div>
+    <div class="hero-location">📍 El Paso, Texas · Pickup & Delivery</div>
+  </div>
+
+  <div class="links">
+    <a href="#" class="link-btn lb-order" onclick="showPage('order'); return false;">
+      <span class="lb-icon">📦</span>
+      <div class="lb-text">
+        <div>Order Now</div>
+        <div class="lb-label">DM or call to place your order</div>
+      </div>
+      <span>→</span>
+    </a>
+    <a href="tel:9154914288" class="link-btn lb-phone">
+      <span class="lb-icon">📞</span>
+      <div class="lb-text">
+        <div>(915) 491-4288</div>
+        <div class="lb-label">Call or text us directly</div>
+      </div>
+      <span>→</span>
+    </a>
+    <a href="https://instagram.com/cleanlabelmeals" class="link-btn lb-ig">
+      <span class="lb-icon">📸</span>
+      <div class="lb-text">
+        <div>Instagram</div>
+        <div class="lb-label">@cleanlabelmeals</div>
+      </div>
+      <span>→</span>
+    </a>
+    <a href="https://tiktok.com/@cleanlabelmeals" class="link-btn lb-tk">
+      <span class="lb-icon">🎵</span>
+      <div class="lb-text">
+        <div>TikTok</div>
+        <div class="lb-label">@cleanlabelmeals</div>
+      </div>
+      <span>→</span>
+    </a>
+    <a href="https://facebook.com/cleanlabelmeals" class="link-btn lb-fb">
+      <span class="lb-icon">👥</span>
+      <div class="lb-text">
+        <div>Facebook</div>
+        <div class="lb-label">Clean Label Meals</div>
+      </div>
+      <span>→</span>
+    </a>
+    <a href="#" class="link-btn lb-sc">
+      <span class="lb-icon">👻</span>
+      <div class="lb-text">
+        <div>Snapchat</div>
+        <div class="lb-label">cleanlabelmeals</div>
+      </div>
+      <span>→</span>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+  <div style="text-align:center; font-family:var(--mono); font-size:11px; letter-spacing:2px; color:rgba(245,240,232,0.4);">
+    WHAT MAKES US DIFFERENT
+  </div>
+  <div style="display:grid; gap:10px; margin-top:16px;">
+    <div style="background:rgba(45,74,45,0.25); border:1px solid rgba(74,124,74,0.25); border-radius:10px; padding:14px 16px; font-size:13px; color:rgba(245,240,232,0.8); line-height:1.7;">
+      🐔 <strong>Air-chilled chicken only</strong> — no chlorine, no water weight
+    </div>
+    <div style="background:rgba(45,74,45,0.25); border:1px solid rgba(74,124,74,0.25); border-radius:10px; padding:14px 16px; font-size:13px; color:rgba(245,240,232,0.8); line-height:1.7;">
+      🥩 <strong>100% grass-fed beef</strong> — no GMOs, no hormones
+    </div>
+    <div style="background:rgba(45,74,45,0.25); border:1px solid rgba(74,124,74,0.25); border-radius:10px; padding:14px 16px; font-size:13px; color:rgba(245,240,232,0.8); line-height:1.7;">
+      🫒 <strong>Avocado, coconut & EVOO only</strong> — never seed oils
+    </div>
+    <div style="background:rgba(45,74,45,0.25); border:1px solid rgba(74,124,74,0.25); border-radius:10px; padding:14px 16px; font-size:13px; color:rgba(245,240,232,0.8); line-height:1.7;">
+      🍳 <strong>Stainless steel & cast iron only</strong> — zero toxic coatings
+    </div>
+  </div>
+</div>
+
+<!-- ============ ORDER ============ -->
+<div id="page-order" class="page">
+  <div class="sec-label">Get Started</div>
+  <div class="sec-title">How to Order</div>
+
+  <div style="display:grid; gap:12px; margin-bottom:28px;">
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+      <div style="font-family:var(--mono); font-size:28px; color:var(--gold); margin-bottom:8px;">01</div>
+      <div style="font-size:15px; font-weight:600; margin-bottom:4px;">Choose Your Diet Plan</div>
+      <div style="font-size:13px; color:rgba(245,240,232,0.6);">Keto, Carnivore, Diabetic-Friendly, High-Protein, Vegan, Vegetarian, Mediterranean, Paleo & more — see the Diets tab for full food lists.</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+      <div style="font-family:var(--mono); font-size:28px; color:var(--gold); margin-bottom:8px;">02</div>
+      <div style="font-size:15px; font-weight:600; margin-bottom:4px;">Choose Your Protein</div>
+      <div style="font-size:13px; color:rgba(245,240,232,0.6);">Air-chilled chicken breast, grass-fed ground beef, salmon, shrimp, eggs, or plant-based options.</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+      <div style="font-family:var(--mono); font-size:28px; color:var(--gold); margin-bottom:8px;">03</div>
+      <div style="font-size:15px; font-weight:600; margin-bottom:4px;">Choose Your Cooking Oil</div>
+      <div style="font-size:13px; color:rgba(245,240,232,0.6);">Avocado oil, coconut oil, or extra-virgin olive oil. Your choice — every time.</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+      <div style="font-family:var(--mono); font-size:28px; color:var(--gold); margin-bottom:8px;">04</div>
+      <div style="font-size:15px; font-weight:600; margin-bottom:4px;">Choose Your Sides</div>
+      <div style="font-size:13px; color:rgba(245,240,232,0.6);">Rice, sweet potato, avocado, broccoli, zucchini, and more based on your diet plan.</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+      <div style="font-family:var(--mono); font-size:28px; color:var(--gold); margin-bottom:8px;">05</div>
+      <div style="font-size:15px; font-weight:600; margin-bottom:4px;">DM or Call to Place Order</div>
+      <div style="font-size:13px; color:rgba(245,240,232,0.6);">Contact us on Instagram, text, or call (915) 491-4288. We'll confirm your order and arrange pickup or delivery.</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(45,74,45,0.3); border:1px solid rgba(200,169,74,0.3); border-radius:12px; padding:20px; margin-bottom:20px;">
+    <div style="font-family:var(--mono); font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:12px;">TRANSPARENT PRICING</div>
+    <div class="price-row"><span class="pitem">Air-chilled chicken breast (6oz)</span><span class="pcost">~$3.50</span></div>
+    <div class="price-row"><span class="pitem">Grass-fed ground beef (6oz)</span><span class="pcost">~$4.00</span></div>
+    <div class="price-row"><span class="pitem">Fresh vegetables</span><span class="pcost">~$1.00</span></div>
+    <div class="price-row"><span class="pitem">Sides (rice, sweet potato, avocado)</span><span class="pcost">~$0.75</span></div>
+    <div class="price-row"><span class="pitem">Clean oil (your choice)</span><span class="pcost">~$0.50</span></div>
+    <div class="price-row"><span class="pitem">Seasoning & spices</span><span class="pcost">~$0.25</span></div>
+    <div class="price-row"><span class="pitem">BPA-free container</span><span class="pcost">~$0.75</span></div>
+    <div class="price-row ptotal"><span class="pitem">Our cost per meal</span><span class="pcost">~$10.75</span></div>
+    <div class="price-row pcharge"><span class="pitem">Your price</span><span class="pcost">$14–$17</span></div>
+    <div style="margin-top:12px; font-size:12px; color:rgba(245,240,232,0.5); font-style:italic;">We show you this because you deserve to know. Our margin covers labor, fuel, time & growth. That's it.</div>
+  </div>
+</div>
+
+<!-- ============ DIETS ============ -->
+<div id="page-diets" class="page">
+  <div class="sec-label">Full Diet Guide</div>
+  <div class="sec-title">Every Diet. Every Food.</div>
+
+  <div class="diet-tabs">
+    <button class="diet-tab active" onclick="showDiet('keto')">Keto</button>
+    <button class="diet-tab" onclick="showDiet('carnivore')">Carnivore</button>
+    <button class="diet-tab" onclick="showDiet('diabetic')">Diabetic</button>
+    <button class="diet-tab" onclick="showDiet('highprotein')">High-Protein</button>
+    <button class="diet-tab" onclick="showDiet('paleo')">Paleo</button>
+    <button class="diet-tab" onclick="showDiet('mediterranean')">Mediterranean</button>
+    <button class="diet-tab" onclick="showDiet('vegan')">Vegan</button>
+    <button class="diet-tab" onclick="showDiet('vegetarian')">Vegetarian</button>
+    <button class="diet-tab" onclick="showDiet('glutenfree')">Gluten-Free</button>
+    <button class="diet-tab" onclick="showDiet('lowsodium')">Low-Sodium</button>
+  </div>
+
+  <!-- KETO -->
+  <div id="diet-keto" class="diet-panel active">
+    <div class="diet-header">
+      <h3>🥑 Ketogenic (Keto)</h3>
+      <p>High fat, very low carb, moderate protein. Puts your body into ketosis — burning fat for fuel instead of glucose. Great for weight loss, mental clarity, and energy stability.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Air-chilled chicken breast</span><span class="food-tag">Air-chilled chicken thighs</span><span class="food-tag">Grass-fed ground beef</span><span class="food-tag">Ribeye steak</span><span class="food-tag">Salmon</span><span class="food-tag">Sardines</span><span class="food-tag">Tuna</span><span class="food-tag">Shrimp</span><span class="food-tag">Bacon (nitrate-free)</span><span class="food-tag">Eggs</span><span class="food-tag">Lamb</span><span class="food-tag">Turkey</span><span class="food-tag">Pork shoulder</span><span class="food-tag">Bison</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">HEALTHY FATS</div>
+      <div class="food-tags">
+        <span class="food-tag">Avocado</span><span class="food-tag">Avocado oil</span><span class="food-tag">Coconut oil</span><span class="food-tag">Extra-virgin olive oil</span><span class="food-tag">Grass-fed butter</span><span class="food-tag">Ghee</span><span class="food-tag">MCT oil</span><span class="food-tag">Full-fat cheese</span><span class="food-tag">Heavy cream</span><span class="food-tag">Almonds</span><span class="food-tag">Walnuts</span><span class="food-tag">Macadamia nuts</span><span class="food-tag">Chia seeds</span><span class="food-tag">Flax seeds</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">VEGETABLES (LOW CARB)</div>
+      <div class="food-tags">
+        <span class="food-tag">Broccoli</span><span class="food-tag">Cauliflower</span><span class="food-tag">Spinach</span><span class="food-tag">Kale</span><span class="food-tag">Zucchini</span><span class="food-tag">Asparagus</span><span class="food-tag">Green beans</span><span class="food-tag">Cabbage</span><span class="food-tag">Brussels sprouts</span><span class="food-tag">Cucumber</span><span class="food-tag">Celery</span><span class="food-tag">Bell peppers</span><span class="food-tag">Mushrooms</span><span class="food-tag">Arugula</span><span class="food-tag">Bok choy</span><span class="food-tag">Eggplant</span><span class="food-tag">Artichoke</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">AVOID ON KETO</div>
+      <div class="food-tags">
+        <span class="food-tag avoid">Rice</span><span class="food-tag avoid">Bread</span><span class="food-tag avoid">Pasta</span><span class="food-tag avoid">Sugar</span><span class="food-tag avoid">Potatoes</span><span class="food-tag avoid">Corn</span><span class="food-tag avoid">Beans</span><span class="food-tag avoid">Most fruit</span><span class="food-tag avoid">Oats</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARNIVORE -->
+  <div id="diet-carnivore" class="diet-panel">
+    <div class="diet-header">
+      <h3>🥩 Carnivore</h3>
+      <p>Animal products only. Zero plants, zero carbs. Eliminates all potential food sensitivities. Popular for gut healing, inflammation reduction, autoimmune conditions, and extreme fat loss.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">BEEF</div>
+      <div class="food-tags">
+        <span class="food-tag">Grass-fed ground beef</span><span class="food-tag">Ribeye steak</span><span class="food-tag">NY strip</span><span class="food-tag">Brisket</span><span class="food-tag">Chuck roast</span><span class="food-tag">Short ribs</span><span class="food-tag">Beef liver</span><span class="food-tag">Beef heart</span><span class="food-tag">Beef kidney</span><span class="food-tag">Oxtail</span><span class="food-tag">Beef tallow</span><span class="food-tag">Bone broth</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">POULTRY</div>
+      <div class="food-tags">
+        <span class="food-tag">Air-chilled chicken breast</span><span class="food-tag">Air-chilled chicken thighs</span><span class="food-tag">Chicken wings</span><span class="food-tag">Chicken liver</span><span class="food-tag">Turkey breast</span><span class="food-tag">Duck</span><span class="food-tag">Eggs</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">SEAFOOD & PORK</div>
+      <div class="food-tags">
+        <span class="food-tag">Salmon</span><span class="food-tag">Sardines</span><span class="food-tag">Tuna</span><span class="food-tag">Shrimp</span><span class="food-tag">Scallops</span><span class="food-tag">Crab</span><span class="food-tag">Lobster</span><span class="food-tag">Bacon (nitrate-free)</span><span class="food-tag">Pork ribs</span><span class="food-tag">Pork belly</span><span class="food-tag">Lamb chops</span><span class="food-tag">Bison</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">SEASONINGS (CARNIVORE APPROVED)</div>
+      <div class="food-tags">
+        <span class="food-tag">Sea salt</span><span class="food-tag">Black pepper</span><span class="food-tag">Butter</span><span class="food-tag">Ghee</span><span class="food-tag">Beef tallow</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">AVOID ON CARNIVORE</div>
+      <div class="food-tags">
+        <span class="food-tag avoid">All vegetables</span><span class="food-tag avoid">All fruit</span><span class="food-tag avoid">All grains</span><span class="food-tag avoid">All legumes</span><span class="food-tag avoid">All sugars</span><span class="food-tag avoid">All plant oils</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIABETIC -->
+  <div id="diet-diabetic" class="diet-panel">
+    <div class="diet-header">
+      <h3>💙 Diabetic-Friendly</h3>
+      <p>Low glycemic index foods that keep blood sugar stable. Anti-inflammatory, high in fiber and lean protein. Designed for Type 1 and Type 2 diabetics — and those who want to prevent it. Diet ALONE can reverse the effects of Type 2 diabetes significantly.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Air-chilled chicken breast</span><span class="food-tag">Air-chilled chicken thighs (no skin)</span><span class="food-tag">Grass-fed ground beef (lean)</span><span class="food-tag">Salmon</span><span class="food-tag">Tuna</span><span class="food-tag">Sardines</span><span class="food-tag">Shrimp</span><span class="food-tag">Eggs</span><span class="food-tag">Turkey breast</span><span class="food-tag">Lentils</span><span class="food-tag">Chickpeas</span><span class="food-tag">Black beans</span><span class="food-tag">Edamame</span><span class="food-tag">Tofu (non-GMO)</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">LOW GLYCEMIC VEGETABLES</div>
+      <div class="food-tags">
+        <span class="food-tag">Broccoli</span><span class="food-tag">Spinach</span><span class="food-tag">Kale</span><span class="food-tag">Cauliflower</span><span class="food-tag">Zucchini</span><span class="food-tag">Asparagus</span><span class="food-tag">Green beans</span><span class="food-tag">Brussels sprouts</span><span class="food-tag">Cabbage</span><span class="food-tag">Celery</span><span class="food-tag">Cucumber</span><span class="food-tag">Tomatoes</span><span class="food-tag">Bell peppers</span><span class="food-tag">Mushrooms</span><span class="food-tag">Eggplant</span><span class="food-tag">Arugula</span><span class="food-tag">Bok choy</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">SMART CARBS (LOW GI)</div>
+      <div class="food-tags">
+        <span class="food-tag">Sweet potato (small portion)</span><span class="food-tag">Brown rice (small)</span><span class="food-tag">Quinoa</span><span class="food-tag">Steel-cut oats</span><span class="food-tag">Avocado</span><span class="food-tag">Berries (blueberry, strawberry)</span><span class="food-tag">Chickpeas</span><span class="food-tag">Lentils</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">AVOID FOR DIABETICS</div>
+      <div class="food-tags">
+        <span class="food-tag avoid">White rice</span><span class="food-tag avoid">White bread</span><span class="food-tag avoid">Sugary sauces</span><span class="food-tag avoid">Fruit juice</span><span class="food-tag avoid">Processed meats</span><span class="food-tag avoid">Fried food</span><span class="food-tag avoid">Seed oils</span><span class="food-tag avoid">Corn syrup</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH PROTEIN -->
+  <div id="diet-highprotein" class="diet-panel">
+    <div class="diet-header">
+      <h3>💪 High-Protein</h3>
+      <p>Built for athletes, military, bodybuilders, and anyone trying to build muscle or recover fast. High protein with balanced carbs and fats. Perfect for Rangers, special forces training, or anyone burning serious calories.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PROTEINS (DOUBLE PORTIONS AVAILABLE)</div>
+      <div class="food-tags">
+        <span class="food-tag">Air-chilled chicken breast</span><span class="food-tag">Air-chilled chicken thighs</span><span class="food-tag">Grass-fed ground beef</span><span class="food-tag">Salmon</span><span class="food-tag">Tuna</span><span class="food-tag">Shrimp</span><span class="food-tag">Turkey breast</span><span class="food-tag">Eggs</span><span class="food-tag">Egg whites</span><span class="food-tag">Bison</span><span class="food-tag">Pork tenderloin</span><span class="food-tag">Cottage cheese</span><span class="food-tag">Greek yogurt (plain)</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">CARBS FOR PERFORMANCE</div>
+      <div class="food-tags">
+        <span class="food-tag">White rice</span><span class="food-tag">Brown rice</span><span class="food-tag">Sweet potato</span><span class="food-tag">Oats</span><span class="food-tag">Quinoa</span><span class="food-tag">Banana</span><span class="food-tag">Whole grain pasta</span><span class="food-tag">Corn tortillas</span><span class="food-tag">Beans</span><span class="food-tag">Lentils</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">VEGETABLES</div>
+      <div class="food-tags">
+        <span class="food-tag">Broccoli</span><span class="food-tag">Spinach</span><span class="food-tag">Asparagus</span><span class="food-tag">Green beans</span><span class="food-tag">Zucchini</span><span class="food-tag">Mixed greens</span><span class="food-tag">Cucumber</span><span class="food-tag">Bell peppers</span><span class="food-tag">Tomatoes</span><span class="food-tag">Cauliflower</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">HEALTHY FATS</div>
+      <div class="food-tags">
+        <span class="food-tag">Avocado</span><span class="food-tag">Avocado oil</span><span class="food-tag">Olive oil (finishing)</span><span class="food-tag">Almonds</span><span class="food-tag">Walnuts</span><span class="food-tag">Chia seeds</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PALEO -->
+  <div id="diet-paleo" class="diet-panel">
+    <div class="diet-header">
+      <h3>🦴 Paleo</h3>
+      <p>Eat like our ancestors. Whole foods only — meat, fish, eggs, vegetables, fruits, nuts. No grains, no dairy, no processed foods, no legumes. Reduces inflammation and improves gut health.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Air-chilled chicken</span><span class="food-tag">Grass-fed beef</span><span class="food-tag">Salmon</span><span class="food-tag">Sardines</span><span class="food-tag">Shrimp</span><span class="food-tag">Turkey</span><span class="food-tag">Lamb</span><span class="food-tag">Bison</span><span class="food-tag">Eggs</span><span class="food-tag">Pork (uncured)</span><span class="food-tag">Duck</span><span class="food-tag">Venison</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">VEGETABLES</div>
+      <div class="food-tags">
+        <span class="food-tag">Sweet potato</span><span class="food-tag">Broccoli</span><span class="food-tag">Spinach</span><span class="food-tag">Kale</span><span class="food-tag">Zucchini</span><span class="food-tag">Carrots</span><span class="food-tag">Beets</span><span class="food-tag">Asparagus</span><span class="food-tag">Brussels sprouts</span><span class="food-tag">Onion</span><span class="food-tag">Garlic</span><span class="food-tag">Tomatoes</span><span class="food-tag">Butternut squash</span><span class="food-tag">Cauliflower</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">FRUITS & NUTS</div>
+      <div class="food-tags">
+        <span class="food-tag">Blueberries</span><span class="food-tag">Strawberries</span><span class="food-tag">Avocado</span><span class="food-tag">Mango</span><span class="food-tag">Apple</span><span class="food-tag">Almonds</span><span class="food-tag">Walnuts</span><span class="food-tag">Pecans</span><span class="food-tag">Macadamia nuts</span><span class="food-tag">Cashews</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">AVOID ON PALEO</div>
+      <div class="food-tags">
+        <span class="food-tag avoid">Grains (rice, oats, wheat)</span><span class="food-tag avoid">Dairy</span><span class="food-tag avoid">Legumes</span><span class="food-tag avoid">Refined sugar</span><span class="food-tag avoid">Processed food</span><span class="food-tag avoid">Seed oils</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDITERRANEAN -->
+  <div id="diet-mediterranean" class="diet-panel">
+    <div class="diet-header">
+      <h3>🫒 Mediterranean</h3>
+      <p>One of the most science-backed diets in the world. Heart healthy, anti-inflammatory, and sustainable long-term. Heavy on olive oil, fish, vegetables, legumes, and whole grains. Excellent for heart disease prevention and longevity.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Salmon</span><span class="food-tag">Sardines</span><span class="food-tag">Tuna</span><span class="food-tag">Shrimp</span><span class="food-tag">Air-chilled chicken</span><span class="food-tag">Eggs</span><span class="food-tag">Lentils</span><span class="food-tag">Chickpeas</span><span class="food-tag">Falafel (baked)</span><span class="food-tag">Grass-fed beef (moderate)</span><span class="food-tag">Turkey</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">VEGETABLES & LEGUMES</div>
+      <div class="food-tags">
+        <span class="food-tag">Tomatoes</span><span class="food-tag">Eggplant</span><span class="food-tag">Zucchini</span><span class="food-tag">Spinach</span><span class="food-tag">Artichoke</span><span class="food-tag">Broccoli</span><span class="food-tag">Cucumbers</span><span class="food-tag">Onions</span><span class="food-tag">Garlic</span><span class="food-tag">Bell peppers</span><span class="food-tag">Chickpeas</span><span class="food-tag">Lentils</span><span class="food-tag">Black beans</span><span class="food-tag">Kale</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">WHOLE GRAINS & FATS</div>
+      <div class="food-tags">
+        <span class="food-tag">Brown rice</span><span class="food-tag">Quinoa</span><span class="food-tag">Farro</span><span class="food-tag">Extra-virgin olive oil</span><span class="food-tag">Avocado</span><span class="food-tag">Almonds</span><span class="food-tag">Walnuts</span><span class="food-tag">Pine nuts</span><span class="food-tag">Olives</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VEGAN -->
+  <div id="diet-vegan" class="diet-panel">
+    <div class="diet-header">
+      <h3>🌱 Vegan</h3>
+      <p>100% plant-based. No meat, no dairy, no eggs, no animal products of any kind. High in fiber, antioxidants, and phytonutrients. We use non-GMO, organic ingredients where possible.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PLANT PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Lentils (red, green, black)</span><span class="food-tag">Chickpeas</span><span class="food-tag">Black beans</span><span class="food-tag">Kidney beans</span><span class="food-tag">Edamame</span><span class="food-tag">Tofu (non-GMO)</span><span class="food-tag">Tempeh</span><span class="food-tag">Seitan</span><span class="food-tag">Quinoa</span><span class="food-tag">Hemp seeds</span><span class="food-tag">Chia seeds</span><span class="food-tag">Pumpkin seeds</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">VEGETABLES</div>
+      <div class="food-tags">
+        <span class="food-tag">Broccoli</span><span class="food-tag">Spinach</span><span class="food-tag">Kale</span><span class="food-tag">Zucchini</span><span class="food-tag">Sweet potato</span><span class="food-tag">Cauliflower</span><span class="food-tag">Asparagus</span><span class="food-tag">Brussels sprouts</span><span class="food-tag">Beets</span><span class="food-tag">Carrots</span><span class="food-tag">Bell peppers</span><span class="food-tag">Mushrooms</span><span class="food-tag">Artichoke</span><span class="food-tag">Eggplant</span><span class="food-tag">Bok choy</span><span class="food-tag">Tomatoes</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">GRAINS & FATS</div>
+      <div class="food-tags">
+        <span class="food-tag">Brown rice</span><span class="food-tag">Quinoa</span><span class="food-tag">Oats</span><span class="food-tag">Farro</span><span class="food-tag">Avocado</span><span class="food-tag">Avocado oil</span><span class="food-tag">Coconut oil</span><span class="food-tag">Olive oil</span><span class="food-tag">Almonds</span><span class="food-tag">Walnuts</span><span class="food-tag">Cashews</span><span class="food-tag">Flaxseed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VEGETARIAN -->
+  <div id="diet-vegetarian" class="diet-panel">
+    <div class="diet-header">
+      <h3>🥚 Vegetarian</h3>
+      <p>Plant-based with eggs and dairy allowed. More flexible than vegan — great protein options through eggs, cheese, and legumes. Focuses on whole foods and eliminating meat.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Eggs</span><span class="food-tag">Cottage cheese</span><span class="food-tag">Greek yogurt (plain)</span><span class="food-tag">Lentils</span><span class="food-tag">Chickpeas</span><span class="food-tag">Black beans</span><span class="food-tag">Tofu (non-GMO)</span><span class="food-tag">Tempeh</span><span class="food-tag">Quinoa</span><span class="food-tag">Edamame</span><span class="food-tag">Hemp seeds</span><span class="food-tag">Chia seeds</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">VEGETABLES & GRAINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Broccoli</span><span class="food-tag">Spinach</span><span class="food-tag">Sweet potato</span><span class="food-tag">Zucchini</span><span class="food-tag">Cauliflower</span><span class="food-tag">Kale</span><span class="food-tag">Mushrooms</span><span class="food-tag">Bell peppers</span><span class="food-tag">Brown rice</span><span class="food-tag">Oats</span><span class="food-tag">Quinoa</span><span class="food-tag">Avocado</span><span class="food-tag">Tomatoes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLUTEN FREE -->
+  <div id="diet-glutenfree" class="diet-panel">
+    <div class="diet-header">
+      <h3>🌾 Gluten-Free</h3>
+      <p>Eliminates wheat, barley, rye, and anything containing gluten. Essential for celiac disease and gluten sensitivity. All Clean Label Meals can be made 100% gluten-free — just let us know.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">SAFE PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Air-chilled chicken</span><span class="food-tag">Grass-fed ground beef</span><span class="food-tag">Salmon</span><span class="food-tag">Tuna</span><span class="food-tag">Shrimp</span><span class="food-tag">Eggs</span><span class="food-tag">Turkey</span><span class="food-tag">Lamb</span><span class="food-tag">Pork</span><span class="food-tag">Lentils</span><span class="food-tag">Chickpeas</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">SAFE GRAINS & CARBS</div>
+      <div class="food-tags">
+        <span class="food-tag">White rice</span><span class="food-tag">Brown rice</span><span class="food-tag">Quinoa</span><span class="food-tag">Sweet potato</span><span class="food-tag">Corn tortillas</span><span class="food-tag">Oats (certified GF)</span><span class="food-tag">Buckwheat</span><span class="food-tag">Cassava</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">AVOID (CONTAINS GLUTEN)</div>
+      <div class="food-tags">
+        <span class="food-tag avoid">Wheat</span><span class="food-tag avoid">Barley</span><span class="food-tag avoid">Rye</span><span class="food-tag avoid">Regular soy sauce</span><span class="food-tag avoid">Flour tortillas</span><span class="food-tag avoid">Bread</span><span class="food-tag avoid">Pasta</span><span class="food-tag avoid">Beer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOW SODIUM -->
+  <div id="diet-lowsodium" class="diet-panel">
+    <div class="diet-header">
+      <h3>🧂 Low-Sodium</h3>
+      <p>For customers managing high blood pressure, heart disease, or kidney issues. We season with herbs, spices, citrus, and garlic instead of salt. Big flavor, minimal sodium.</p>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">PROTEINS</div>
+      <div class="food-tags">
+        <span class="food-tag">Air-chilled chicken breast</span><span class="food-tag">Fresh salmon</span><span class="food-tag">Fresh tuna</span><span class="food-tag">Eggs</span><span class="food-tag">Grass-fed ground beef</span><span class="food-tag">Turkey breast</span><span class="food-tag">Shrimp (fresh, not pre-seasoned)</span><span class="food-tag">Lentils</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">LOW-SODIUM SEASONING</div>
+      <div class="food-tags">
+        <span class="food-tag">Garlic (fresh)</span><span class="food-tag">Lemon juice</span><span class="food-tag">Fresh herbs</span><span class="food-tag">Cumin</span><span class="food-tag">Turmeric</span><span class="food-tag">Black pepper</span><span class="food-tag">Paprika</span><span class="food-tag">Rosemary</span><span class="food-tag">Thyme</span><span class="food-tag">Basil</span><span class="food-tag">Oregano</span>
+      </div>
+    </div>
+    <div class="food-cat">
+      <div class="food-cat-title">AVOID</div>
+      <div class="food-tags">
+        <span class="food-tag avoid">Table salt (excess)</span><span class="food-tag avoid">Soy sauce</span><span class="food-tag avoid">Canned goods (high sodium)</span><span class="food-tag avoid">Processed meats</span><span class="food-tag avoid">Pre-made sauces</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HIGHLIGHTS / WHY US ============ -->
+<div id="page-highlights" class="page">
+  <div class="sec-label">The Full Story</div>
+  <div class="sec-title">Why Clean Label Meals</div>
+  <p style="font-size:13px; color:rgba(245,240,232,0.6); margin-bottom:24px;">Tap any section to learn more. This is everything other meal prep businesses hide from you.</p>
+
+  <div class="hl-grid">
+    <div class="hl-card" onclick="toggleHL(this)">
+      <div class="hl-card-top">
+        <div class="hl-icon">🐔</div>
+        <div class="hl-info"><h3>Our Chicken</h3><p>TAP TO EXPAND</p></div>
+        <div class="hl-arrow">›</div>
+      </div>
+      <div class="hl-body">
+        <p>Most chicken sold in the US is water-chilled — meaning it's submerged in large tanks of <strong>chlorinated water</strong> during processing. The bird absorbs up to 12% of its weight in that water. You pay for water weight. You consume chlorine residue.</p>
+        <p style="margin-top:10px;">We use <strong>Bell & Evans 100% Air-Chilled chicken only</strong>. Each bird is individually cooled with purified air over several hours. No chlorine. No added water. Just pure chicken. Europe has used this method for over 40 years — and is why some countries banned US chicken entirely.</p>
+        <ul style="margin-top:10px;">
+          <li>No chlorine bath</li>
+          <li>No water weight — you pay for actual meat</li>
+          <li>Better flavor and texture</li>
+          <li>No antibiotics ever</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hl-card" onclick="toggleHL(this)">
+      <div class="hl-card-top">
+        <div class="hl-icon">🥩</div>
+        <div class="hl-info"><h3>Our Ground Beef</h3><p>TAP TO EXPAND</p></div>
+        <div class="hl-arrow">›</div>
+      </div>
+      <div class="hl-body">
+        <p>Most meal prep businesses buy the cheapest ground beef available — conventional, grain-fed, feedlot-raised cattle pumped with antibiotics and hormones. They don't tell you this.</p>
+        <p style="margin-top:10px;">We use <strong>100% grass-fed, grass-finished ground beef</strong> from Texas ranches. Grass-fed beef has 2-4x more omega-3 fatty acids, higher CLA (cancer-fighting fat), more beta-carotene, and no synthetic hormones or GMO feed.</p>
+        <ul style="margin-top:10px;">
+          <li>No GMOs</li>
+          <li>No added hormones</li>
+          <li>No antibiotics</li>
+          <li>Higher in omega-3s and CLA</li>
+          <li>Texas-raised, ranch-direct</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hl-card" onclick="toggleHL(this)">
+      <div class="hl-card-top">
+        <div class="hl-icon">🥦</div>
+        <div class="hl-info"><h3>Our Produce</h3><p>TAP TO EXPAND</p></div>
+        <div class="hl-arrow">›</div>
+      </div>
+      <div class="hl-body">
+        <p>We prioritize fresh, not frozen. Organic when available. Locally sourced from El Paso and New Mexico farms when possible. No pesticide-heavy conventional produce if we can help it.</p>
+        <ul style="margin-top:10px;">
+          <li>Fresh over frozen always</li>
+          <li>Organic prioritized</li>
+          <li>Local El Paso / NM farms when possible</li>
+          <li>Seasonal rotation for best quality</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hl-card" onclick="toggleHL(this)">
+      <div class="hl-card-top">
+        <div class="hl-icon">📦</div>
+        <div class="hl-info"><h3>Our Containers</h3><p>TAP TO EXPAND</p></div>
+        <div class="hl-arrow">›</div>
+      </div>
+      <div class="hl-body">
+        <p>Plastic is one of the biggest health threats of our generation. Studies have found microplastics in human blood, sperm, and organs. Heating food in plastic makes it significantly worse — plastics leach chemicals directly into your food.</p>
+        <p style="margin-top:10px;">We use <strong>BPA-free, PFAS-free containers</strong> and include this warning on every meal: <em>Do NOT microwave with the lid on. Transfer to a plate or heat on stovetop.</em></p>
+        <ul style="margin-top:10px;">
+          <li>BPA-free containers only</li>
+          <li>No Styrofoam ever</li>
+          <li>Heating instructions on every label</li>
+          <li>Glass upgrade option coming soon</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hl-card" onclick="toggleHL(this)">
+      <div class="hl-card-top">
+        <div class="hl-icon">🍳</div>
+        <div class="hl-info"><h3>Our Cookware</h3><p>TAP TO EXPAND</p></div>
+        <div class="hl-arrow">›</div>
+      </div>
+      <div class="hl-body">
+        <p>Non-stick pans (Teflon) contain PFAS — "forever chemicals" — that leach into food, especially when scratched or overheated. Aluminum cookware can also leach into food at high temperatures.</p>
+        <p style="margin-top:10px;">We cook exclusively in <strong>18/10 stainless steel</strong> (360 Cookware / All-Clad) and <strong>cast iron</strong>. Zero coatings. Zero leaching. Zero forever chemicals.</p>
+        <ul style="margin-top:10px;">
+          <li>360 Cookware surgical grade stainless steel</li>
+          <li>All-Clad 18/10 stainless steel</li>
+          <li>Lodge cast iron for high-heat searing</li>
+          <li>No Teflon. No PFAS. No aluminum.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ OILS ============ -->
+<div id="page-oils" class="page">
+  <div class="sec-label">Full Oil Guide</div>
+  <div class="sec-title">What's in Your Food Matters</div>
+  <p style="font-size:13px; color:rgba(245,240,232,0.6); margin-bottom:24px;">Most meal prep businesses never tell you what oil they use. We not only tell you — we let you choose.</p>
+
+  <div class="oil-grid">
+    <div class="oil-card good">
+      <div class="oil-top">
+        <div class="oil-icon">🥑</div>
+        <div>
+          <div class="oil-name">Avocado Oil</div>
+          <span class="oil-verdict yes">WE USE THIS</span>
+        </div>
+      </div>
+      <p class="oil-desc">Smoke point of 500°F+ — the highest of any clean oil, making it perfect for high-heat cooking. Rich in heart-healthy monounsaturated fats (oleic acid). Anti-inflammatory. Neutral flavor. Contains lutein for eye health. Cold-pressed options available.</p>
+      <div class="oil-why">BEST FOR: High-heat cooking, searing, roasting, grilling</div>
+    </div>
+
+    <div class="oil-card good">
+      <div class="oil-top">
+        <div class="oil-icon">🥥</div>
+        <div>
+          <div class="oil-name">Coconut Oil</div>
+          <span class="oil-verdict yes">WE USE THIS</span>
+        </div>
+      </div>
+      <p class="oil-desc">Rich in medium-chain triglycerides (MCTs) — fats your body converts directly to energy, bypassing normal fat metabolism. Naturally antimicrobial and antifungal. Stable at medium-high heat. Does not oxidize easily. Supports gut health and brain function.</p>
+      <div class="oil-why">BEST FOR: Medium-heat cooking, stir fry, baking</div>
+    </div>
+
+    <div class="oil-card good">
+      <div class="oil-top">
+        <div class="oil-icon">🫒</div>
+        <div>
+          <div class="oil-name">Extra-Virgin Olive Oil</div>
+          <span class="oil-verdict yes">WE USE THIS</span>
+        </div>
+      </div>
+      <p class="oil-desc">Cold-pressed from fresh olives. Loaded with polyphenols and antioxidants. Oleocanthal in EVOO has natural anti-inflammatory properties similar to ibuprofen. One of the most studied foods for heart health and longevity — the backbone of the Mediterranean diet.</p>
+      <div class="oil-why">BEST FOR: Finishing, low-heat cooking, dressings</div>
+    </div>
+
+    <div class="oil-card bad">
+      <div class="oil-top">
+        <div class="oil-icon">⚠️</div>
+        <div>
+          <div class="oil-name">Canola / Vegetable / Sunflower Oil</div>
+          <span class="oil-verdict no">WE NEVER USE THESE</span>
+        </div>
+      </div>
+      <p class="oil-desc">These are highly processed seed oils — extracted using chemical solvents at extremely high temperatures that destroy nutrients and create oxidized, inflammatory byproducts. They are extremely high in omega-6 fatty acids. The average American already consumes 20x more omega-6 than omega-3. This ratio imbalance is directly linked to chronic inflammation — which drives heart disease, gut problems, hormonal disruption, and more. They are cheap. That's the only reason most food businesses use them.</p>
+      <div class="oil-why" style="color:#e07070;">USED BY: Most meal prep businesses, fast food, processed food</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COOKWARE ============ -->
+<div id="page-cookware" class="page">
+  <div class="sec-label">Zero Toxic Coatings</div>
+  <div class="sec-title">What We Cook With & Why</div>
+
+  <div class="cw-grid">
+    <div class="cw-card featured">
+      <div class="cw-top">
+        <div class="cw-name">360 Cookware</div>
+        <div class="cw-badge">TOP PICK</div>
+      </div>
+      <p class="cw-desc">T-316 surgical grade stainless steel — the same grade used in medical devices. 18/10 composition (18% chromium, 10% nickel). 100% made in the USA. Mechanically polished — no harsh chemicals used in finishing. Completely non-toxic. No coatings of any kind.</p>
+      <div class="cw-spec">Grade: T-316 Surgical Stainless · Made in Wisconsin, USA</div>
+    </div>
+
+    <div class="cw-card">
+      <div class="cw-name">All-Clad Stainless</div>
+      <p class="cw-desc">The gold standard of professional kitchens. 18/10 stainless steel with an aluminum core for perfect, even heat distribution. No coating. No PFAS. No PFOA. Lasts decades with proper care.</p>
+      <div class="cw-spec">Grade: 18/10 Stainless · Multi-ply construction</div>
+    </div>
+
+    <div class="cw-card">
+      <div class="cw-name">Lodge Cast Iron</div>
+      <p class="cw-desc">Seasoned cast iron is naturally non-stick — no synthetic coatings needed. Gets better with use. Adds dietary iron to food. Can withstand any heat including oven temperatures over 500°F. A single pan can last 100+ years.</p>
+      <div class="cw-spec">Material: Cast Iron · Made in South Pittsburg, Tennessee</div>
+    </div>
+
+    <div class="cw-card" style="border-left:3px solid var(--red);">
+      <div class="cw-name" style="color:#e07070;">What We Never Use</div>
+      <p class="cw-desc">Teflon and non-stick coatings contain PFAS — "forever chemicals" that accumulate in your body and never break down. When scratched or overheated, these coatings release toxic particles and fumes directly into your food. Aluminum cookware leaches metal at high temperatures.</p>
+      <div class="cw-spec" style="color:#e07070;">No Teflon · No PFAS · No PFOA · No bare aluminum · Ever.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SOURCING ============ -->
+<div id="page-sourcing" class="page">
+  <div class="sec-label">Full Transparency</div>
+  <div class="sec-title">Where Every Ingredient Comes From</div>
+
+  <div class="src-card">
+    <div class="src-label">CHICKEN</div>
+    <div class="src-name">Bell & Evans — Air-Chilled</div>
+    <p class="src-desc">The only chicken brand in the US with a 100% air-chill facility built specifically for this purpose. No chlorine water tanks. No hybrid methods. Pure air-chilling from start to finish. Available at Whole Foods El Paso.</p>
+    <div class="src-checks">
+      <span class="src-check">✓ 100% Air-Chilled</span>
+      <span class="src-check">✓ No Antibiotics Ever</span>
+      <span class="src-check">✓ No Chlorine Bath</span>
+      <span class="src-check">✓ No Added Water</span>
+      <span class="src-check">✓ Available at Whole Foods EP</span>
+    </div>
+  </div>
+
+  <div class="src-card">
+    <div class="src-label">GROUND BEEF</div>
+    <div class="src-name">Chisholm Trail — Texas Wholesale Beef</div>
+    <p class="src-desc">Rancher-owned cooperative. 100% grass-fed on local Texas ranches. Not factory farmed. Not finished on feedlots. Old-fashioned principles — cattle raised on pasture their entire lives. Wholesale pricing available for businesses.</p>
+    <div class="src-checks">
+      <span class="src-check">✓ 100% Grass-Fed & Finished</span>
+      <span class="src-check">✓ Texas Ranches</span>
+      <span class="src-check">✓ No Antibiotics</span>
+      <span class="src-check">✓ No Hormones</span>
+      <span class="src-check">✓ No GMO Feed</span>
+      <span class="src-check">✓ Wholesale Available</span>
+    </div>
+  </div>
+
+  <div class="src-card">
+    <div class="src-label">PRODUCE</div>
+    <div class="src-name">Local & Organic First</div>
+    <p class="src-desc">We source fresh produce from El Paso and New Mexico local farms when available. Organic certified when possible. We rotate seasonally to maintain quality and freshness. Never frozen when fresh is available.</p>
+    <div class="src-checks">
+      <span class="src-check">✓ Fresh, Not Frozen</span>
+      <span class="src-check">✓ Organic Prioritized</span>
+      <span class="src-check">✓ Local El Paso / NM Farms</span>
+      <span class="src-check">✓ Seasonal Rotation</span>
+    </div>
+  </div>
+
+  <div class="src-card">
+    <div class="src-label">CONTAINERS</div>
+    <div class="src-name">BPA-Free · PFAS-Free</div>
+    <p class="src-desc">We use only BPA-free, PFAS-free meal prep containers. Every meal comes with printed heating instructions: do NOT microwave with the lid on. Transfer to a ceramic plate or glass container before heating. Glass container upgrades coming soon.</p>
+    <div class="src-checks">
+      <span class="src-check">✓ BPA-Free</span>
+      <span class="src-check">✓ PFAS-Free</span>
+      <span class="src-check">✓ No Styrofoam</span>
+      <span class="src-check">✓ Heating Instructions Included</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAYMENT ============ -->
+<div id="page-payment" class="page">
+  <div class="sec-label">Easy & Flexible</div>
+  <div class="sec-title">How to Pay</div>
+  <p style="font-size:13px; color:rgba(245,240,232,0.6); margin-bottom:24px;">We accept all major payment methods. Pay whatever way is easiest for you.</p>
+
+  <div class="pay-grid">
+    <div class="pay-card">
+      <div class="p-icon">💚</div>
+      <div class="p-name">CASH APP</div>
+      <div class="p-handle">$cleanlabelmeals</div>
+    </div>
+    <div class="pay-card">
+      <div class="p-icon">💙</div>
+      <div class="p-name">VENMO</div>
+      <div class="p-handle">@cleanlabelmeals</div>
+    </div>
+    <div class="pay-card">
+      <div class="p-icon">💛</div>
+      <div class="p-name">ZELLE</div>
+      <div class="p-handle">(915) 491-4288</div>
+    </div>
+    <div class="pay-card">
+      <div class="p-icon">🔵</div>
+      <div class="p-name">PAYPAL</div>
+      <div class="p-handle">cleanlabelmeals</div>
+    </div>
+    <div class="pay-card" style="grid-column:span 2;">
+      <div class="p-icon">💵</div>
+      <div class="p-name">SQUARE (CARD)</div>
+      <div class="p-handle">All major credit & debit cards accepted in person</div>
+    </div>
+    <div class="pay-card cash">
+      <div class="p-icon">🤝</div>
+      <div class="p-name">CASH IN PERSON</div>
+      <div class="p-handle">Always welcome at pickup. Exact change appreciated but not required.</div>
+    </div>
+  </div>
+
+  <div class="pay-note">
+    📞 To place an order, call or text us at <strong>(915) 491-4288</strong><br>
+    or DM us on Instagram <strong>@cleanlabelmeals</strong><br><br>
+    Payment is due at pickup or delivery.<br>
+    Prepayment via Cash App, Venmo, or Zelle reserves your order.
+  </div>
+</div>
+
+<!-- ============ REVIEWS ============ -->
+<div id="page-reviews" class="page">
+  <div class="sec-label">Real Customers</div>
+  <div class="sec-title">What People Are Saying</div>
+
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"I've tried so many meal prep services in El Paso and none of them ever told me what oil they used or where the chicken came from. Clean Label Meals is the first one that actually showed me everything. The food tastes completely different — cleaner, fresher. I can literally feel the difference."</div>
+      <div class="review-author">— MARIA R.</div>
+      <div class="review-diet">High-Protein Plan · El Paso, TX</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"My doctor told me I needed to change my diet because my blood sugar was getting bad. A friend recommended Clean Label Meals. Three weeks in, my numbers are already improving. This food actually makes sense for what my body needs."</div>
+      <div class="review-author">— CARLOS M.</div>
+      <div class="review-diet">Diabetic-Friendly Plan · El Paso, TX</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"I'm active duty and the high-protein meals have been perfect for my training. The grass-fed beef hits different from regular meal prep. The fact that they show you every ingredient and oil they use? That's what keeps me coming back. No BS."</div>
+      <div class="review-author">— SGT. JAMES T.</div>
+      <div class="review-diet">High-Protein Plan · Fort Bliss, EP</div>
+    </div>
+  </div>
+
+  <div class="review-cta">
+    <p>Tried Clean Label Meals? Leave us a review!</p>
+    <a href="https://instagram.com/cleanlabelmeals">📸 Tag us on Instagram @cleanlabelmeals</a><br><br>
+    <a href="tel:9154914288" style="color:rgba(245,240,232,0.6);">Or text your feedback: (915) 491-4288</a>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div id="page-contact" class="page">
+  <div class="sec-label">Reach Us Anytime</div>
+  <div class="sec-title">Contact Clean Label Meals</div>
+
+  <div class="contact-block" style="background:rgba(45,74,45,0.3); border-color:rgba(200,169,74,0.3);">
+    <div class="c-icon">📞</div>
+    <div class="c-label">CALL OR TEXT</div>
+    <div class="c-value"><a href="tel:9154914288" style="color:var(--cream); text-decoration:none;">(915) 491-4288</a></div>
+    <div class="c-sub">Best way to reach us · Call or text anytime</div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-block">
+      <div class="c-icon">📸</div>
+      <div class="c-label">INSTAGRAM</div>
+      <div class="c-value">@cleanlabelmeals</div>
+      <div class="c-sub">DM to order</div>
+    </div>
+    <div class="contact-block">
+      <div class="c-icon">📧</div>
+      <div class="c-label">EMAIL</div>
+      <div class="c-value" style="font-size:13px;">cleanlabelmeals<br>@gmail.com</div>
+    </div>
+    <div class="contact-block">
+      <div class="c-icon">👥</div>
+      <div class="c-label">FACEBOOK</div>
+      <div class="c-value" style="font-size:13px;">Clean Label Meals</div>
+    </div>
+    <div class="contact-block">
+      <div class="c-icon">🎵</div>
+      <div class="c-label">TIKTOK</div>
+      <div class="c-value">@cleanlabelmeals</div>
+    </div>
+    <div class="contact-block">
+      <div class="c-icon">👻</div>
+      <div class="c-label">SNAPCHAT</div>
+      <div class="c-value">cleanlabelmeals</div>
+    </div>
+    <div class="contact-block">
+      <div class="c-icon">📍</div>
+      <div class="c-label">LOCATION</div>
+      <div class="c-value" style="font-size:13px;">El Paso, TX</div>
+      <div class="c-sub">Pickup & Delivery</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>CLEAN LABEL MEALS</span> · El Paso, Texas<br>
+  (915) 491-4288 · @cleanlabelmeals<br><br>
+  Built on transparency. No secrets. No shortcuts.
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  btns.forEach(b => { if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
+  window.scrollTo(0, 0);
+}
+
+function showDiet(id) {
+  document.querySelectorAll('.diet-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.diet-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('diet-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleHL(card) {
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
